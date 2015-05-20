@@ -1,5 +1,5 @@
-from apps.bcpp_household_member.models import MemberAppointment
-from apps.bcpp_household.utils.update_household_work_list import update_household_work_list
+from ..models import MemberAppointment
+from ..utils.update_household_work_list import update_household_work_list
 
 
 class CallHelper(object):

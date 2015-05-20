@@ -8,7 +8,7 @@ from edc.base.model.validators import datetime_not_future, datetime_not_before_s
 from edc.constants import CLOSED, OPEN, NEW
 from edc.device.sync.models import BaseSyncUuidModel
 
-from ..models import HouseholdStructure
+from edc_contact import HouseholdStructure
 
 
 class FollowUpList(BaseSyncUuidModel):
@@ -38,7 +38,7 @@ class FollowUpList(BaseSyncUuidModel):
     label = models.CharField(
         max_length=25,
         null=True,
-        help_text="label to group reasons for contact, e.g. T1 preparation"
+        help_text="label to group reasons for edc_contact, e.g. T1 preparation"
         )
 
     history = AuditTrail()

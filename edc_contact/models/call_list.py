@@ -13,8 +13,8 @@ from edc.device.sync.models import BaseSyncUuidModel
 
 from apps.bcpp_household_member.models import HouseholdMember, MemberAppointment
 
-from ..choices import REFERRAL_CODES
-from ..managers import CallListManager
+from edc_contact import REFERRAL_CODES
+from edc_contact import CallListManager
 
 
 class CallList (BaseSyncUuidModel):
@@ -129,7 +129,7 @@ class CallList (BaseSyncUuidModel):
     label = models.CharField(
         max_length=25,
         null=True,
-        help_text="label to group reasons for contact, e.g. T1 preparation"
+        help_text="label to group reasons for edc_contact, e.g. T1 preparation"
         )
 
     member_appointment = models.ForeignKey(MemberAppointment, null=True, editable=False)

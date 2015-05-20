@@ -4,8 +4,8 @@ from edc.base.modeladmin.admin import BaseModelAdmin, BaseStackedInline
 
 from apps.bcpp_household_member.models import HouseholdMember
 
-from ..forms import CallLogForm, CallLogEntryForm
-from ..models import CallLog, CallLogEntry
+from edc_contact import CallLogForm, CallLogEntryForm
+from edc_contact import CallLog, CallLogEntry
 
 
 class CallLogEntryAdminInline(BaseStackedInline):
@@ -13,10 +13,10 @@ class CallLogEntryAdminInline(BaseStackedInline):
         'Please read out to participant. "We hope you have been well since our visit last year. '
         'As a member of this study, it is time for your annual revisit in which we will ask you '
         'some questions and perform some tests."',
-        'Please read out to contact other than participant. (Note: You may NOT disclose that the '
-        'participant is a member of the Ya Tsie study). "We would like to contact a participant '
-        '(give participant name) who gave us this number as a means to contact them. Do you know '
-        'how we can contact this person directly? This may be a phone number or a physical address.']
+        'Please read out to edc_contact other than participant. (Note: You may NOT disclose that the '
+        'participant is a member of the Ya Tsie study). "We would like to edc_contact a participant '
+        '(give participant name) who gave us this number as a means to edc_contact them. Do you know '
+        'how we can edc_contact this person directly? This may be a phone number or a physical address.']
 
     form = CallLogEntryForm
     model = CallLogEntry
@@ -65,10 +65,10 @@ class CallLogAdmin(BaseModelAdmin):
         '<h5>Please read out to participant:</h5> "We hope you have been well since our visit last year. '
         'As a member of this study, it is time for your annual revisit in which we will ask you '
         'some questions and perform some tests."',
-        '<h5>Please read out to contact other than participant:</h5> (<B>IMPORTANT:</B> You may NOT disclose that the '
-        'participant is a member of the Ya Tsie study).<BR>"We would like to contact a participant '
-        '(give participant name) who gave us this number as a means to contact them. Do you know '
-        'how we can contact this person directly? This may be a phone number or a physical address.']
+        '<h5>Please read out to edc_contact other than participant:</h5> (<B>IMPORTANT:</B> You may NOT disclose that the '
+        'participant is a member of the Ya Tsie study).<BR>"We would like to edc_contact a participant '
+        '(give participant name) who gave us this number as a means to edc_contact them. Do you know '
+        'how we can edc_contact this person directly? This may be a phone number or a physical address.']
 
     form = CallLogForm
 
@@ -91,10 +91,10 @@ class CallLogEntryAdmin(BaseModelAdmin):
         'Please read out to participant. "We hope you have been well since our visit last year. '
         'As a member of this study, it is time for your annual revisit in which we will ask you '
         'some questions and perform some tests."',
-        'Please read out to contact other than participant. (Note: You may NOT disclose that the '
-        'participant is a member of the Ya Tsie study). "We would like to contact a participant '
-        '(give participant name) who gave us this number as a means to contact them. Do you know '
-        'how we can contact this person directly? This may be a phone number or a physical address.']
+        'Please read out to edc_contact other than participant. (Note: You may NOT disclose that the '
+        'participant is a member of the Ya Tsie study). "We would like to edc_contact a participant '
+        '(give participant name) who gave us this number as a means to edc_contact them. Do you know '
+        'how we can edc_contact this person directly? This may be a phone number or a physical address.']
 
     form = CallLogEntryForm
     fields = (

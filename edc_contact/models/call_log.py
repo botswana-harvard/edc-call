@@ -14,11 +14,11 @@ from edc.device.sync.models import BaseSyncUuidModel
 from apps.bcpp_household_member.models import HouseholdMember
 from apps.bcpp_survey.models.survey import Survey
 
-from ..choices import APPT_LOCATIONS, APPT_GRADING, CONTACT_TYPE
-from ..managers import CallLogEntryManager, CallLogManager
-from ..validators import date_in_survey
+from edc_contact import APPT_LOCATIONS, APPT_GRADING, CONTACT_TYPE
+from edc_contact import CallLogEntryManager, CallLogManager
+from edc_contact import date_in_survey
 
-from .subject_locator import SubjectLocator
+from edc_contact import SubjectLocator
 
 
 class CallLog (BaseSyncUuidModel):
@@ -87,7 +87,7 @@ class CallLogEntry (BaseSyncUuidModel):
         max_length=50,
         validators=[RegexValidator(
             regex=r'^[0-9]{7,8}(,[0-9]{7,8})*$',
-            message='Only enter contact numbers separated by commas. No spaces and no trailing comma.'), ],
+            message='Only enter edc_contact numbers separated by commas. No spaces and no trailing comma.'), ],
         null=True,
         blank=True,
         help_text='Separate by comma (,).'
@@ -96,7 +96,7 @@ class CallLogEntry (BaseSyncUuidModel):
     contact_type = models.CharField(
         max_length=15,
         choices=CONTACT_TYPE,
-        help_text='If no contact made. STOP. Save form.'
+        help_text='If no edc_contact made. STOP. Save form.'
     )
 
     survival_status = models.CharField(

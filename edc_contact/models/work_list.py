@@ -13,7 +13,7 @@ from .household_structure import HouseholdStructure
 from .plot import Plot
 
 
-class HouseholdWorkList(BaseDispatchSyncUuidModel):
+class WorkList(BaseDispatchSyncUuidModel):
 
     """A system model that links a household to its household members
     for a given survey year and helps track the enrollment status, enumeration

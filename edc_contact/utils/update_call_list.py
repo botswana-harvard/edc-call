@@ -99,7 +99,7 @@ def update_call_list(survey_slug, label, verbose=False):
             call_list.user_created = subject_consent.user_created
             call_list.save()
         except SubjectLocator.DoesNotExist:
-            print('Not adding {} to call list. No contact information or may not '
+            print('Not adding {} to call list. No edc_contact information or may not '
                   'follow (SubjectLocator)'.format(subject_consent))
         except HouseholdStructureNotEnrolled as e:
             print str(e)
