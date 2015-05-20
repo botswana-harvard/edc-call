@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GIT_DIR = '/Users/fchilisa/source/edc-contact'
+
 
 # Application definition
 
@@ -38,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crypto_fields',
+#     'django_crypto_fields',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,9 +81,16 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'init_command': 'SET storage_engine=INNODB',
+            },
+            'NAME': 'contact',
+            'USER': 'root',
+            'PASSWORD': 'cc3721b',
+            'HOST': '',
+            'PORT': '',
+        },
 }
 
 
