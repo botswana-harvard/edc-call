@@ -1,48 +1,45 @@
-# from dateutil.relativedelta import relativedelta
-# 
-# from django.db import models
-# from django.utils.translation import ugettext_lazy as _
-# 
-# from edc.audit.audit_trail import AuditTrail
-# from edc.base.model.validators import datetime_not_future, datetime_not_before_study_start
-# from edc.constants import CLOSED, OPEN, NEW
-# from edc.device.sync.models import BaseSyncUuidModel
-# 
-# from ..models import HouseholdStructure
-# 
-# 
-# class FollowUpList(BaseSyncUuidModel):
-# 
-#     household_structure = models.ForeignKey(HouseholdStructure)
-# 
-#     community = models.CharField(
-#         max_length=50)
-# 
-#     attempts = models.IntegerField(
-#         default=0)
-# 
-#     outcome = models.TextField(
-#         max_length=150,
-#         )
-# 
-#     status = models.CharField(
-#         max_length=15,
-#         choices=(
-#             (NEW, 'New'),
-#             (OPEN, 'Open'),
-#             (CLOSED, 'Closed'),
-#             ),
-#         default=NEW,
-#         )
-# 
-#     label = models.CharField(
-#         max_length=25,
-#         null=True,
-#         help_text="label to group reasons for contact, e.g. T1 preparation"
-#         )
-# 
+from django.db import models
+
+from ..choices import FOLLOW_UP
+from ..constants import CLOSED, OPEN, NEW
+
+from .work_list import WorkList
+
+
+class FollowUpList(WorkList):
+
+    followup = models.CharField(
+        max_length=50,
+        choices=FOLLOW_UP
+        )
+
+    call_datetime = models.DateTimeField(
+        null=True,
+        editable=False,
+        help_text='last call datetime updated by call log entry',
+        )
+
+    attempts = models.IntegerField(
+        default=0)
+
+    coutcome = models.TextField(
+        max_length=150,
+        null=True,
+        )
+
+    status = models.CharField(
+        max_length=15,
+        choices=(
+            (NEW, 'New'),
+            (OPEN, 'Open'),
+            (CLOSED, 'Closed'),
+            ),
+        default=NEW,
+        )
+
 #     history = AuditTrail()
-# 
-#     class Meta:
-#         app_label = 'bcpp_household'
-#         unique_together = ['household_structure', 'label']
+ 
+#     objects = CallListManager()
+
+    class Meta:
+        app_label = 'contact'
