@@ -1,8 +1,10 @@
 from datetime import datetime
 
+from django_crypto_fields.fields import EncryptedTextField
 from django.db import models
 
 from edc_base.model.models import BaseUuidModel
+
 
 # from edc.audit.audit_trail import AuditTrail
 # from edc.base.model.fields import OtherCharField
@@ -30,31 +32,25 @@ class CallLog (BaseUuidModel):
         unique=True,
     )
 
-#     locator_information = EncryptedTextField(
-#         help_text='This information has been imported from the previous locator. You may update as required.')
-# 
-#     contact_notes = EncryptedTextField(
-#         null=True,
-#         blank=True,
-#         help_text='')
+    locator_information = EncryptedTextField(
+        help_text='This information has been imported from the previous locator. You may update as required.')
+ 
+    contact_notes = EncryptedTextField(
+        null=True,
+        blank=True,
+        help_text='')
 
-#     label = models.CharField(
-#         max_length=25,
-#         null=True,
-#         editable=False,
-#         help_text="from call list"
-#         )
+    label = models.CharField(
+        max_length=25,
+        null=True,
+        editable=False,
+        help_text="from call list"
+        )
 
 #     history = AuditTrail()
 
 #     objects = CallLogManager()
 
-#     def __unicode__(self):
-#         return '{} {} {} ({} call)'.format(
-#             self.household_member.first_name,
-#             self.household_member.initials,
-#             self.household_member.household_structure.survey.survey_name,
-#             self.label)
 
 #     def save(self, *args, **kwargs):
 #         update_fields = kwargs.get('update_fields', [])
@@ -67,13 +63,10 @@ class CallLog (BaseUuidModel):
 #             except AttributeError as err_message:
 #                 self.locator_information = str(err_message)
 #         super(CallLog, self).save(*args, **kwargs)
-# # 
-#     def natural_key(self):
-#         return self.household_member.natural_key() + (self.label, )
-#     natural_key.dependencies = ['bcpp_household_member.household_member', ]
+
 
     class Meta:
         app_label = 'contact'
-#         unique_together = ['household_member', 'label']
+
 
 
