@@ -6,14 +6,32 @@ from django_crypto_fields.fields import FirstnameField
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import datetime_not_future, datetime_not_before_study_start
 
+try:
+    from edc_sync.mixins import SyncMixin
+except:
+    SycnMixin = type('SyncMixin', (object, ), {})
+
 from ..choices import GENDER_UNDETERMINED
+from ..manangers import WorkListManager
 
 
-class WorkList(BaseUuidModel):
+class WorkList(SyncMixin, BaseUuidModel):
 
     """A system model that helps track certain system values. """
     subject_identifier = models.CharField(
         max_length=25)
+# 
+#     app_label = models.CharField(
+#         max_length=25,
+#         editable=False)
+# 
+#     object_name = models.CharField(
+#         max_length=25,
+#         editable=False)
+# 
+#     object_pk = models.CharField(
+#         max_length=50,
+#         editable=False)
 
     first_name = FirstnameField(
         verbose_name='First name',
@@ -59,9 +77,12 @@ class WorkList(BaseUuidModel):
         return relativedelta(self.consent_datetime.date(), self.dob).years
     age.allow_tags = True
 
-#     objects = HouseholdWorkListManager()
+    objects = WorkListManager()
 #
 #     history = AuditTrail()
+
+    def natural_key(self):
+        return self.subject_identifier
 
     class Meta:
         app_label = 'contact'

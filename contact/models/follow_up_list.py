@@ -2,13 +2,20 @@ from django.db import models
 
 from edc_base.model.models import BaseUuidModel
 
+try:
+    from edc_sync.mixins import SyncMixin
+except:
+    SycnMixin = type('SyncMixin', (object, ), {})
+
 from ..choices import FOLLOW_UP
 from ..constants import CLOSED, OPEN, NEW
+from ..manangers import FollowUpListManager
 
 from .work_list import WorkList
 
 
-class FollowUpList(BaseUuidModel):
+class FollowUpList(SyncMixin, BaseUuidModel):
+
     work_list = models.ForeignKey(WorkList)
 
     followup = models.CharField(
@@ -41,8 +48,11 @@ class FollowUpList(BaseUuidModel):
         )
 
 #     history = AuditTrail()
- 
-#     objects = CallListManager()
+
+    objects = FollowUpListManager()
+
+    def natural_key(self):
+        return self.subject_identifier
 
     class Meta:
         app_label = 'contact'

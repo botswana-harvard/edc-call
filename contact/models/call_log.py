@@ -3,8 +3,15 @@ from django.db import models
 
 from edc_base.model.models import BaseUuidModel
 
+from ..manangers import CallLogManager
 
-class CallLog (BaseUuidModel):
+try:
+    from edc_sync.mixins import SyncMixin
+except ImportError:
+    SyncMixin = type('SyncMixin', (object, ), {})
+
+
+class CallLog (SyncMixin, BaseUuidModel):
 
     '''Maintain a log of calls for a particular participant'''
 
@@ -33,11 +40,10 @@ class CallLog (BaseUuidModel):
 
 #     history = AuditTrail()
 
-#     objects = CallLogManager()
+    objects = CallLogManager()
 
+    def natural_key(self):
+        return self.subject_identifier
 
     class Meta:
         app_label = 'contact'
-
-
-

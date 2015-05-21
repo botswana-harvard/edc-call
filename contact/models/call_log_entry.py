@@ -4,13 +4,20 @@ from django.db import models
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import date_is_future
 
+try:
+    from edc_sync.mixins import SyncMixin
+except ImportError:
+    SyncMixin = type('SyncMixin', (object, ), {})
+
+
 from ..constants import YES, NO, DEAD
 from ..choices import *
+from ..manangers import *
 
 from .call_log import CallLog
 
 
-class CallLogEntry (BaseUuidModel):
+class CallLogEntry (SyncMixin, BaseUuidModel):
 
     '''Log a call made for '''
 
@@ -134,7 +141,7 @@ class CallLogEntry (BaseUuidModel):
 
 #     history = AuditTrail()
 
-#     objects = CallLogEntryManager()
+    objects = CallLogEntryManager()
 
     def save(self, *args, **kwargs):
         if self.survival_status == DEAD:
