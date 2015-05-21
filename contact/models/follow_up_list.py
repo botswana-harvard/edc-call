@@ -16,7 +16,7 @@ class FollowUpList(BaseUuidModel):
         choices=FOLLOW_UP
         )
 
-    call_datetime = models.DateTimeField(
+    contact_datetime = models.DateTimeField(
         null=True,
         editable=False,
         help_text='last call datetime updated by call log entry',

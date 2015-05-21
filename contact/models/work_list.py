@@ -15,18 +15,6 @@ class WorkList(BaseUuidModel):
     subject_identifier = models.CharField(
         max_length=25)
 
-    app_label = models.CharField(
-        max_length=25,
-        editable=False)
-
-    object_name = models.CharField(
-        max_length=25,
-        editable=False)
-
-    object_pk = models.CharField(
-        max_length=50,
-        editable=False)
-
     first_name = FirstnameField(
         verbose_name='First name',
         editable=False,
