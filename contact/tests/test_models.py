@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.test import TestCase
 
-from ..models import CallLog, CallLogEntry
+from ..models import CallLog, CallLogEntry, WorkList, FollowUpList
 
 
 class CallLogTest(TestCase):
@@ -16,9 +16,11 @@ class CallLogTest(TestCase):
                                     survival_status='Alive',
                                     call_datetime=datetime.today()
                                    )
+#         WorkList.objects.create(subject_identifier = '987-098-9',
+#                                 )
 
     def test_calllog_model_save(self):
-        '''Test that model CallEntry can be saved and queried'''
+        '''Test that model CallLog can be saved and queried'''
         log = CallLog.objects.get(subject_identifier='987-098-9')
         self.assertEqual(log.label, 'List label', 'Failed: Not Equal')
         # Change data in saved model
@@ -37,3 +39,7 @@ class CallLogTest(TestCase):
         log_entry.save()
         # Assert that if survival stattus is dead then call again is no
         self.assertEqual(log_entry.survival_status, 'Dead', 'Failed: Not Equal')
+
+    def test_worklist_model_save(self):
+        pass
+

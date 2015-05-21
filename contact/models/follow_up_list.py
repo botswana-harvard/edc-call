@@ -1,12 +1,15 @@
 from django.db import models
 
+from edc_base.model.models import BaseUuidModel
+
 from ..choices import FOLLOW_UP
 from ..constants import CLOSED, OPEN, NEW
 
 from .work_list import WorkList
 
 
-class FollowUpList(WorkList):
+class FollowUpList(BaseUuidModel):
+    work_list = models.ForeignKey(WorkList)
 
     followup = models.CharField(
         max_length=50,

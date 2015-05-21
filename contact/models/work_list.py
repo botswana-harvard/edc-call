@@ -46,7 +46,7 @@ class WorkList(BaseUuidModel):
         )
 
     age_in_years = models.IntegerField(
-        verbose_name=_('Age in years'),
+        verbose_name=('Age in years'),
         null=True,
         editable=False,
         )
@@ -56,7 +56,7 @@ class WorkList(BaseUuidModel):
         validators=[
             datetime_not_before_study_start,
             datetime_not_future, ],
-        help_text=_("From Subject Consent.")
+        help_text=("From Subject Consent.")
         )
 
     label = models.CharField(

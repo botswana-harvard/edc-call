@@ -1,5 +1,4 @@
 from django.utils.translation import ugettext as _
-from django.utils.translation import ugettext_lazy as _
 
 from .constants import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
 
@@ -11,12 +10,6 @@ BLANK_CHOICE_DASH = [('', '---------')]
 ACU_EST = (
     ('Acute', 'Acute'),
     ('Established', 'Established'),
-)
-PIMA = (
-        ('Participant Declined', 'Participant Declined'),
-        ('Multiple PIMA malfunction', 'Multiple PIMA malfunction'),
-        ('Failed Blood Collection', 'Failed Blood Collection'),
-        ('OTHER', _('Other, specify:')),
 )
 
 ACU_EST_NEG = (
@@ -34,26 +27,6 @@ ALIVE_DEAD_UNKNOWN = (
     (ALIVE, 'Alive'),
     (DEAD, 'Dead'),
     (UNKNOWN, 'Unknown'),
-)
-
-ART_STATUS = (
-    ('ON', 'Yes, ON ART'),
-    ('STOPPED', 'No, stopped ART'),
-    ('NAIVE', 'No, have never taken ART'),
-)
-
-ART_STATUS_UNKNOWN = (
-    ('ON', 'ON ART'),
-    ('STOPPED', 'Stopped'),
-    ('NAIVE', 'Naive'),
-    ('UNKNOWN', 'Unknown'),
-
-)
-
-ART_STATUS_CONFIRM = (
-    ('OPD', '1. Show OPD/IDCC card'),
-    ('Pills', '2. Show Pills'),
-    ('Pic', '3. Identify Pictorial'),
 )
 
 CONFIRMED_SUSPECTED = (
@@ -91,45 +64,11 @@ TIME_OF_DAY = (
     ('Anytime', 'Anytime'),
 )
 
-
 DATE_ESTIMATED = (
     ('-', 'No'),
     ('D', 'Yes, estimated the Day'),
     ('MD', 'Yes, estimated Month and Day'),
     ('YMD', 'Yes, estimated Year, Month and Day'),
-)
-
-DEATH_RELATIONSIP_TO_STUDY = (
-    ('Definitely not related', 'Definitely not related'),
-    ('Probably not related', 'Probably not related'),
-    ('Possible related', 'Possible related'),
-    ('Probably related', 'Probably related'),
-    ('Definitely related', 'Definitely related')
-)
-
-DRUG_FORMULATION = (
-    ('11', 'Tablet'),
-    ('12', 'Capsule'),
-    ('13', 'Liquid'),
-    ('14', 'Powder'),
-    ('15', 'Suspension'),
-    ('16', 'Gel'),
-    ('17', 'Oil'),
-    ('18', 'Lotion'),
-    ('19', 'Cream'),
-    ('20', 'Patch'),
-    ('99', 'Other'),
-)
-
-DRUG_ROUTE = (
-    ('1', 'Intramuscular'),
-    ('2', 'Intravenous'),
-    ('3', 'Oral'),
-    ('4', 'Topical'),
-    ('5', 'Subcutaneous'),
-    ('6', 'Intravaginal'),
-    ('7', 'Rectal'),
-    ('9', 'Other'),
 )
 
 FEEDING = (
@@ -175,58 +114,6 @@ NORMAL_ABNORMAL_NOTEVALUATED = (
     ('NOT_EVAL', 'Not Evaluated'),
 )
 
-POS_NEG = (
-    ('POS', 'Positive'),
-    ('NEG', 'Negative'),
-    ('IND', 'Indeterminate'),
-)
-
-POS_NEG_REFUSED = (
-    ('POS', 'Positive'),
-    ('NEG', 'Negative'),
-    ('IND', 'Indeterminate'),
-    ('REF', 'Refused to disclose'),
-)
-
-POS_NEG_ANY = (
-    ('POS', 'Positive'),
-    ('NEG', 'Negative'),
-    ('ANY', 'Any'),
-)
-
-POS_NEG_ONLY = (
-    ('POS', _('Positive')),
-    ('NEG', _('Negative')),
-)
-
-POS_NEG_UNKNOWN = (
-    ('POS', _('Positive')),
-    ('NEG', _('Negative')),
-    ('UNKNOWN', _('Unknown')),
-)
-
-POS_NEG_ACU = (
-    ('Positive', 'Positive'),
-    ('Negative', 'Negative'),
-    ('Possible Acute', 'Possible Acute'),
-    ('Indeterminate', 'Indeterminate'),
-)
-
-POS_NEG_NOTESTED = (
-    ('POS', 'Positive'),
-    ('NEG', 'Negative'),
-    ('NEVER', 'Never tested for HIV'),
-)
-
-
-POS_NEG_UNTESTED_REFUSAL = (
-    ('POS', 'Positive'),
-    ('NEG', 'Negative'),
-    ('NEVER', 'Never tested for HIV'),
-    ('UNK', 'Unknown'),
-    ('REFUSED', 'Refused to answer'),
-)
-
 REFUSAL_STATUS = (
     ('REFUSED', 'Refused'),
     ('NOT_REFUSED', 'No longer refusing'),
@@ -236,12 +123,6 @@ SEVERITY_LEVEL = (
     ('mild', 'Mild'),
     ('moderate', 'Moderate'),
     ('severe', 'Severe'),
-)
-
-SEXUAL_DEBUT = (
-    ('<=14', '14 or under'),
-    ('15-17', ' 15 - 17'),
-    ('>=18', '18 or above'),
 )
 
 TIME_OF_WEEK = (
@@ -261,17 +142,6 @@ TIME_UNITS = (
     ('WEEKS', 'Weeks'),
     ('MONTHS', 'Months'),
     ('YEARS', 'Years'),
-)
-
-URINALYSIS = (
-    ('NAD', 'NAD'),
-    ('Sugar Neg', 'Sugar Neg'),
-    ('Sugar +', 'Sugar +'),
-    ('Sugar ++', 'Sugar ++'),
-    ('Sugar +++', 'Sugar +++'),
-    ('Blood', 'Blood'),
-    ('Protein', 'Protein'),
-    ('Cells', 'Cells'),
 )
 
 WILL_DECL = (
@@ -390,15 +260,12 @@ YES_NO_DOESNT_WORK = (
     ('Doesnt_work', 'Doesnt Work'),
 )
 
-
-
 APPT_LOCATIONS = (
     ('home', 'At home'),
     ('work', 'At work'),
     ('clinic', 'At clinic'),
     ('OTHER', 'Other location'),
 )
-
 
 APPT_GRADING = (
     ('firm', 'Firm appointment'),
