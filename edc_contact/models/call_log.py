@@ -3,7 +3,7 @@ from django.db import models
 
 from edc_base.model.models import BaseUuidModel
 
-from ..manangers import CallLogManager
+from edc_contact import CallLogManager
 
 try:
     from edc_sync.mixins import SyncMixin
@@ -46,4 +46,4 @@ class CallLog (SyncMixin, BaseUuidModel):
         return self.subject_identifier
 
     class Meta:
-        app_label = 'contact'
+        app_label = 'edc_contact'

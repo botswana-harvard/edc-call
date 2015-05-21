@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 
-from .constants import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
+from edc_contact import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
 
 # choices
 BLANK_CHOICE_DASH = [('', '---------')]
@@ -274,9 +274,9 @@ APPT_GRADING = (
 )
 
 CONTACT_TYPE = (
-    ('direct', 'Direct contact with participant'),
+    ('direct', 'Direct edc_contact with participant'),
     ('indirect', 'Contact with person other than participant'),
-    ('no_contact', 'No contact made'),
+    ('no_contact', 'No edc_contact made'),
 )
 
 FOLLOW_UP = (

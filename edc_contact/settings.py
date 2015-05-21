@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-GIT_DIR = '/Users/fchilisa/source/edc-contact'
+GIT_DIR = '/Users/fchilisa/source/edc-edc_contact'
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_crypto_fields',
-    'contact',
+    'edc_contact',
 )
 
 MIDDLEWARE_CLASSES = (

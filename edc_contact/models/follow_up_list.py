@@ -7,11 +7,11 @@ try:
 except:
     SycnMixin = type('SyncMixin', (object, ), {})
 
-from ..choices import FOLLOW_UP
-from ..constants import CLOSED, OPEN, NEW
-from ..manangers import FollowUpListManager
+from edc_contact import FOLLOW_UP
+from edc_contact import CLOSED, OPEN, NEW
+from edc_contact import FollowUpListManager
 
-from .work_list import WorkList
+from edc_contact import WorkList
 
 
 class FollowUpList(SyncMixin, BaseUuidModel):
@@ -55,4 +55,4 @@ class FollowUpList(SyncMixin, BaseUuidModel):
         return self.subject_identifier
 
     class Meta:
-        app_label = 'contact'
+        app_label = 'edc_contact'

@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.test import TestCase
 
-from ..models import CallLog, CallLogEntry, WorkList, FollowUpList
+from edc_contact import CallLog, CallLogEntry, WorkList, FollowUpList
 
 
 class CallLogTest(TestCase):
@@ -12,7 +12,7 @@ class CallLogTest(TestCase):
                                contact_notes = 'BHP Number',
                                label = 'List label')
         CallLogEntry.objects.create(call_log=self.log,
-                                    contact_type='Direct contact with participant',
+                                    contact_type='Direct edc_contact with participant',
                                     survival_status='Alive',
                                     call_datetime=datetime.today()
                                    )
