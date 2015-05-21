@@ -10,11 +10,11 @@ except ImportError:
     SyncMixin = type('SyncMixin', (object, ), {})
 
 
-from edc_contact import YES, NO, DEAD
-from edc_contact import *
-from edc_contact import *
+from ..constants import YES, NO, DEAD
+from ..choices import *
+from ..manangers import *
 
-from edc_contact import CallLog
+from .call_log import CallLog
 
 
 class CallLogEntry (SyncMixin, BaseUuidModel):
@@ -31,7 +31,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         max_length=50,
         validators=[RegexValidator(
             regex=r'^[0-9]{7,8}(,[0-9]{7,8})*$',
-            message=('Only enter edc_contact numbers separated by commas.'
+            message=('Only enter contact numbers separated by commas.'
                      'No spaces and no trailing comma.')), ],
         null=True,
         blank=True,
@@ -41,7 +41,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
     contact_type = models.CharField(
         max_length=15,
         choices=CONTACT_TYPE,
-        help_text='If no edc_contact made. STOP. Save form.'
+        help_text='If no contact made. STOP. Save form.'
     )
 
     survival_status = models.CharField(
@@ -152,5 +152,5 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         return self.call_log.natural_key() + (self.call_datetime, )
 
     class Meta:
-        app_label = 'edc_contact'
+        app_label = 'contact'
         unique_together = ['call_log', 'call_datetime']

@@ -5,7 +5,7 @@ import sys
 SOURCE_DIR = os.path.expanduser('~/source')
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "contact.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "edc_contact.settings")
 
     sys.path.insert(1, os.path.join(SOURCE_DIR, 'edc-base/'))
 

@@ -1,9 +1,9 @@
 from django import forms
 
 from edc_base.form.forms import BaseModelForm
-from edc_contact import ALIVE, DEAD, NO, YES, UNKNOWN
+from ..constants import ALIVE, DEAD, NO, YES, UNKNOWN
  
-from edc_contact import CallLog, CallLogEntry
+from ..models import CallLog, CallLogEntry
 
 
 class CallLogForm (BaseModelForm):
@@ -26,7 +26,7 @@ class CallLogEntryForm (BaseModelForm):
                                         'survival status = Dead. Please correct.')
 
         if cleaned_data.get('survival_status') != ALIVE and cleaned_data.get('contact_type') == 'direct':
-            raise forms.ValidationError('You indicate direct edc_contact with the participant but '
+            raise forms.ValidationError('You indicate direct contact with the participant but '
                                         'survival status suggests otherwise. Got survival_status={}'.format(
                                             cleaned_data.get('survival_status')))
 
@@ -42,7 +42,7 @@ class CallLogEntryForm (BaseModelForm):
             raise forms.ValidationError('You may not schedule an appointment for a participant who is not available ')
 
         if cleaned_data.get('contact_type') != 'direct' and cleaned_data.get('appt_date'):
-            raise forms.ValidationError('You may may only schedule an appointment if edc_contact is '
+            raise forms.ValidationError('You may may only schedule an appointment if contact is '
                                         'with the participant. Got contact_type=\'{}\''.format(
                                             cleaned_data.get('contact_type')))
 
@@ -60,12 +60,12 @@ class CallLogEntryForm (BaseModelForm):
                 if value and item not in ['id', 'call_log', 'call_datetime', 'contact_type', 'survival_status',
                                           'invalid_numbers', 'call_again']:
                     raise forms.ValidationError(
-                        '{} should be left blank. Got \'{}\' when contact_type=\'No edc_contact made\''.format(item, value))
+                        '{} should be left blank. Got \'{}\' when contact_type=\'No contact made\''.format(item, value))
             if cleaned_data.get('call_again') != YES and cleaned_data.get('survival_status') != DEAD:
-                raise forms.ValidationError('Indicate to call participant again. Got contact_type=\'No edc_contact made\'')
+                raise forms.ValidationError('Indicate to call participant again. Got contact_type=\'No contact made\'')
             if cleaned_data.get('survival_status') != UNKNOWN:
                 raise forms.ValidationError('Expected survival status to be unknown.' 
-                                            'Got contact_type=\'No edc_contact made\'')
+                                            'Got contact_type=\'No contact made\'')
 
         return self.cleaned_data
 
