@@ -1,12 +1,12 @@
 language: python
 python:
-  - "2.7"
-  - "3.2"
-  - "3.3"
+#  - "2.7"
+#  - "3.2"
+#  - "3.3"
   - "3.4"
 #  - "nightly"
 env:
-  - DJANGO_VERSION=1.6.11
+#  - DJANGO_VERSION=1.6.11
   - DJANGO_VERSION=1.7
   - DJANGO_VERSION=1.8
 
@@ -17,10 +17,10 @@ install:
   - pip install -q -r requirements.txt --use-mirrors
 
 before_script:
-  - flake8 contact
+  - flake8 edc_contact
 
 script: 
-  - coverage run --source=contact manage.py test
+  - coverage run --source=edc_contact manage.py test
 
 after_success:
   - coveralls
