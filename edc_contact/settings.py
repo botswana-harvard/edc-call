@@ -28,9 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-GIT_DIR = '/Users/fchilisa/source/edc-edc_contact'
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -103,3 +100,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GIT_DIR = BASE_DIR.ancestor(1)

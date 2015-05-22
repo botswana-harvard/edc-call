@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ..forms import CallLogForm, CallLogEntryForm
+from ..forms import CallLogEntryForm
 from ..models import CallLog, CallLogEntry
 
 
@@ -32,7 +32,7 @@ class CallLogAdmin(admin.ModelAdmin):
     instructions = [
         '<h5>Please read out instructions to participant:</h5>']
 
-    form = CallLogForm
+    # form = CallLogForm
 
     fields = ('locator_information', 'contact_notes')
 

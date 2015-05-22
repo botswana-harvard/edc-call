@@ -64,3 +64,4 @@ class CallLogEntryForm(ModelForm):
 
     class Meta:
         model = CallLogEntry
+        fields = '__all__'
