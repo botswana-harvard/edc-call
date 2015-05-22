@@ -35,7 +35,7 @@ class CallLog (SyncMixin, BaseUuidModel):
         max_length=25,
         null=True,
         editable=False,
-        help_text="from call list"
+        help_text="from followup list"
         )
 
 #     history = AuditTrail()

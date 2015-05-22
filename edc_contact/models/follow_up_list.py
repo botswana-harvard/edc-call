@@ -51,7 +51,7 @@ class FollowUpList(SyncMixin, BaseUuidModel):
 #     history = AuditTrail()
 
     objects = FollowUpListManager()
-    
+
     @property
     def work_list(self):
         return self._work_list

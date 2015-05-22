@@ -23,14 +23,6 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
 
     _call_log = models.ForeignKey(CallLog)
 
-    @property
-    def call_log(self):
-        return self._call_log
-
-    @call_log.setter
-    def call_log(self, value):
-        self._call_log = value
-
     call_datetime = models.DateTimeField()
 
     invalid_numbers = models.CharField(
@@ -150,6 +142,14 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
 #     history = AuditTrail()
 
     objects = CallLogEntryManager()
+
+    @property
+    def call_log(self):
+        return self._call_log
+
+    @call_log.setter
+    def call_log(self, value):
+        self._call_log = value
 
     def save(self, *args, **kwargs):
         if self.survival_status == DEAD:
