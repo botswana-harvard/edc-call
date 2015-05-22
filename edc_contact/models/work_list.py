@@ -18,25 +18,29 @@ from ..manangers import WorkListManager
 class WorkList(SyncMixin, BaseUuidModel):
 
     """A system model that helps track certain system values. """
-    subject_identifier = models.CharField(
+    _subject_identifier = models.CharField(
         max_length=25)
-# 
-#     app_label = models.CharField(
-#         max_length=25,
-#         editable=False)
-# 
-#     object_name = models.CharField(
-#         max_length=25,
-#         editable=False)
-# 
-#     object_pk = models.CharField(
-#         max_length=50,
-#         editable=False)
 
-    first_name = FirstnameField(
+    _first_name = FirstnameField(
         verbose_name='First name',
         editable=False,
         )
+
+    @property
+    def subject_identifier(self):
+        return self._subject_identifier
+
+    @subject_identifier.setter
+    def subject_identifier(self, value):
+        self._subject_identifier = value
+
+    @property
+    def first_name(self):
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, value):
+        self._first_name = value
 
     initials = models.CharField(
         verbose_name='Initials',

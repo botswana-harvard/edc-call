@@ -17,7 +17,15 @@ from .work_list import WorkList
 
 class FollowUpList(SyncMixin, BaseUuidModel):
 
-    work_list = models.ForeignKey(WorkList)
+    _work_list = models.ForeignKey(WorkList)
+
+    @property
+    def work_list(self):
+        return self._work_list
+
+    @work_list.setter
+    def work_list(self, value):
+        self._work_list=value
 
     followup = models.CharField(
         max_length=50,
