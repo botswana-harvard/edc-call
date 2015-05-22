@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.test import TestCase
 
-from edc_contact import CallLog, CallLogEntry, WorkList, FollowUpList
+from edc_contact.models import CallLog, CallLogEntry, WorkList, FollowUpList
 
 
 class CallLogTest(TestCase):
