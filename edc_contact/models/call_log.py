@@ -24,7 +24,9 @@ class CallLog (SyncMixin, BaseUuidModel):
     )
 
     locator_information = EncryptedTextField(
-        help_text='This information has been imported from the previous locator. You may update as required.')
+        help_text=('This information has been imported from'
+                   'the previous locator. You may update as required.')
+    )
 
     contact_notes = EncryptedTextField(
         null=True,

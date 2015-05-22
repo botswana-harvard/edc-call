@@ -1,5 +1,5 @@
-from django.core.validators import RegexValidator
 from django.db import models
+from django.core.validators import RegexValidator
 
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import date_is_future
