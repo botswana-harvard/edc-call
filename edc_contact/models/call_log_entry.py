@@ -3,16 +3,16 @@ from django.db import models
 
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import date_is_future
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, ALIVE_DEAD_UNKNOWN, TIME_OF_WEEK, TIME_OF_DAY
+from edc_constants.constants import YES, NO, DEAD
 
 try:
     from edc_sync.mixins import SyncMixin
 except ImportError:
     SyncMixin = type('SyncMixin', (object, ), {})
 
-
-from ..constants import YES, NO, DEAD
-from ..choices import *
-from ..manangers import *
+from ..choices import CONTACT_TYPE, APPT_GRADING, APPT_LOCATIONS
+from ..manangers import CallLogEntryManager
 
 from .call_log import CallLog
 
@@ -21,7 +21,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
 
     '''Log a call made for a participant'''
 
-    _call_log = models.ForeignKey(CallLog)
+    call_log = models.ForeignKey(CallLog)
 
     call_datetime = models.DateTimeField()
 
@@ -49,7 +49,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         max_length=10,
         choices=ALIVE_DEAD_UNKNOWN,
         help_text=""
-        )
+    )
 
     update_locator = models.CharField(
         max_length=7,
@@ -59,7 +59,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         blank=True,
         help_text=('If YES, please enter the changed information '
                    'in the box above entitled (2) Locator information')
-        )
+    )
 
     available = models.CharField(
         max_length=7,
@@ -68,7 +68,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text=""
-        )
+    )
 
     time_of_week = models.CharField(
         verbose_name='Time of week when participant will be available',
@@ -77,7 +77,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         blank=True,
         null=True,
         help_text=""
-        )
+    )
 
     time_of_day = models.CharField(
         verbose_name='Time of day when participant will be available',
@@ -86,7 +86,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         blank=True,
         null=True,
         help_text=""
-        )
+    )
 
     appt = models.CharField(
         verbose_name='Is the participant willing to schedule an appointment',
@@ -95,7 +95,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text=""
-        )
+    )
 
     appt_date = models.DateField(
         verbose_name="Appointment Date",
@@ -103,7 +103,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text="This can only come from the participant."
-        )
+    )
 
     appt_grading = models.CharField(
         verbose_name='Is this appointment...',
@@ -112,7 +112,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text=""
-        )
+    )
 
     appt_location = models.CharField(
         verbose_name='Appointment location',
@@ -121,7 +121,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text=""
-        )
+    )
 
     appt_location_other = models.CharField(
         verbose_name='Appointment location',
@@ -129,7 +129,7 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         null=True,
         blank=True,
         help_text=""
-        )
+    )
 
     call_again = models.CharField(
         verbose_name='Call the participant again?',
@@ -137,19 +137,11 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         choices=YES_NO,
         default=YES,
         help_text=''
-        )
+    )
 
 #     history = AuditTrail()
 
     objects = CallLogEntryManager()
-
-    @property
-    def call_log(self):
-        return self._call_log
-
-    @call_log.setter
-    def call_log(self, value):
-        self._call_log = value
 
     def save(self, *args, **kwargs):
         if self.survival_status == DEAD:

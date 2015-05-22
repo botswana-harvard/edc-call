@@ -18,32 +18,32 @@ from ..manangers import WorkListManager
 class WorkList(SyncMixin, BaseUuidModel):
 
     """A system model that helps track certain system values. """
-    _subject_identifier = models.CharField(
+    subject_identifier = models.CharField(
         max_length=25)
 
-    _first_name = FirstnameField(
+    first_name = FirstnameField(
         verbose_name='First name',
         editable=False,
-        )
+    )
 
     initials = models.CharField(
         verbose_name='Initials',
         max_length=3,
         editable=False,
-        )
+    )
 
     gender = models.CharField(
         verbose_name='Gender',
         max_length=1,
         choices=GENDER_UNDETERMINED,
         editable=False,
-        )
+    )
 
     age_in_years = models.IntegerField(
         verbose_name=('Age in years'),
         null=True,
         editable=False,
-        )
+    )
 
     consent_datetime = models.DateTimeField(
         verbose_name="Consent date and time",
@@ -51,31 +51,15 @@ class WorkList(SyncMixin, BaseUuidModel):
             datetime_not_before_study_start,
             datetime_not_future, ],
         help_text=("From Subject Consent.")
-        )
+    )
 
     label = models.CharField(
         max_length=25,
         null=True,
         help_text="label to group reasons for contact, e.g. preparation"
-        )
+    )
 
     note = models.CharField("Note", max_length=250, blank=True)
-
-    @property
-    def subject_identifier(self):
-        return self._subject_identifier
-
-    @subject_identifier.setter
-    def subject_identifier(self, value):
-        self._subject_identifier = value
-
-    @property
-    def first_name(self):
-        return self._first_name
-
-    @first_name.setter
-    def first_name(self, value):
-        self._first_name = value 
 
     def age(self):
         return relativedelta(self.consent_datetime.date(), self.dob).years

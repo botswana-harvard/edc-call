@@ -1,21 +1,21 @@
-from django_crypto_fields.fields import EncryptedTextField
 from django.db import models
+from django_crypto_fields.fields import EncryptedTextField
 
 from edc_base.model.models import BaseUuidModel
-
-from ..manangers import CallLogManager
 
 try:
     from edc_sync.mixins import SyncMixin
 except ImportError:
     SyncMixin = type('SyncMixin', (object, ), {})
 
+from ..manangers import CallLogManager
+
 
 class CallLog (SyncMixin, BaseUuidModel):
 
-    '''Maintain a log of calls for a particular participant'''
+    """Maintains a log of calls for a particular participant."""
 
-    _subject_identifier = models.CharField(
+    subject_identifier = models.CharField(
         verbose_name="Subject Identifier",
         max_length=50,
         blank=True,
@@ -29,24 +29,17 @@ class CallLog (SyncMixin, BaseUuidModel):
     contact_notes = EncryptedTextField(
         null=True,
         blank=True,
-        help_text='')
+        help_text=''
+    )
 
     label = models.CharField(
         max_length=25,
         null=True,
         editable=False,
         help_text="from followup list"
-        )
+    )
 
 #     history = AuditTrail()
-
-    @property
-    def subject_identifier(self):
-        return self._subjectidentifier
-
-    @subject_identifier.setter
-    def subject_identifier(self, value):
-        self._subject_identifier=value
 
     objects = CallLogManager()
 

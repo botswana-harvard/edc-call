@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 
-from edc_contact import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
 
 # choices
 BLANK_CHOICE_DASH = [('', '---------')]
