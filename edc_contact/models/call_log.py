@@ -15,7 +15,7 @@ class CallLog (SyncMixin, BaseUuidModel):
 
     '''Maintain a log of calls for a particular participant'''
 
-    subject_identifier = models.CharField(
+    _subject_identifier = models.CharField(
         verbose_name="Subject Identifier",
         max_length=50,
         blank=True,
@@ -39,6 +39,14 @@ class CallLog (SyncMixin, BaseUuidModel):
         )
 
 #     history = AuditTrail()
+
+    @property
+    def subject_identifier(self):
+        return self._subjectidentifier
+
+    @subject_identifier.setter
+    def subject_identifier(self, value):
+        self._subject_identifier=value
 
     objects = CallLogManager()
 

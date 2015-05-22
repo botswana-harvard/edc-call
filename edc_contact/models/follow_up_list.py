@@ -19,14 +19,6 @@ class FollowUpList(SyncMixin, BaseUuidModel):
 
     _work_list = models.ForeignKey(WorkList)
 
-    @property
-    def work_list(self):
-        return self._work_list
-
-    @work_list.setter
-    def work_list(self, value):
-        self._work_list=value
-
     followup = models.CharField(
         max_length=50,
         choices=FOLLOW_UP
@@ -59,6 +51,14 @@ class FollowUpList(SyncMixin, BaseUuidModel):
 #     history = AuditTrail()
 
     objects = FollowUpListManager()
+    
+    @property
+    def work_list(self):
+        return self._work_list
+
+    @work_list.setter
+    def work_list(self, value):
+        self._work_list=value
 
     def call_list(self):
         url = reverse('admin:contact_worklist_changelist')

@@ -26,22 +26,6 @@ class WorkList(SyncMixin, BaseUuidModel):
         editable=False,
         )
 
-    @property
-    def subject_identifier(self):
-        return self._subject_identifier
-
-    @subject_identifier.setter
-    def subject_identifier(self, value):
-        self._subject_identifier = value
-
-    @property
-    def first_name(self):
-        return self._first_name
-
-    @first_name.setter
-    def first_name(self, value):
-        self._first_name = value
-
     initials = models.CharField(
         verbose_name='Initials',
         max_length=3,
@@ -76,6 +60,22 @@ class WorkList(SyncMixin, BaseUuidModel):
         )
 
     note = models.CharField("Note", max_length=250, blank=True)
+
+    @property
+    def subject_identifier(self):
+        return self._subject_identifier
+
+    @subject_identifier.setter
+    def subject_identifier(self, value):
+        self._subject_identifier = value
+
+    @property
+    def first_name(self):
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, value):
+        self._first_name = value 
 
     def age(self):
         return relativedelta(self.consent_datetime.date(), self.dob).years
