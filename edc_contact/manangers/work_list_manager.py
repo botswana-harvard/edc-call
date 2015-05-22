@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 
 
 class WorkListManager(models.Manager):
@@ -11,4 +10,4 @@ class WorkListManager(models.Manager):
 class FollowUpListManager(models.Manager):
 
     def get_by_natural_key(self, work_list, contact_datetime):
-        return self.get(work_list=work_list,contact_datetime=contact_datetime)
+        return self.get(work_list=work_list, contact_datetime=contact_datetime)
