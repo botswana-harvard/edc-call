@@ -5,7 +5,6 @@ from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import date_is_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, ALIVE_DEAD_UNKNOWN, TIME_OF_WEEK, TIME_OF_DAY
 from edc_constants.constants import YES, NO, DEAD
-
 try:
     from edc_sync.mixins import SyncMixin
 except ImportError:
@@ -19,7 +18,7 @@ from .call_log import CallLog
 
 class CallLogEntry (SyncMixin, BaseUuidModel):
 
-    '''Log a call made for a participant'''
+    """Logs a call made for a participant."""
 
     call_log = models.ForeignKey(CallLog)
 
