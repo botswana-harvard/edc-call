@@ -19,9 +19,17 @@ from .call_log import CallLog
 
 class CallLogEntry (SyncMixin, BaseUuidModel):
 
-    '''Log a call made for '''
+    '''Log a call made for a participant'''
 
-    call_log = models.ForeignKey(CallLog)
+    _call_log = models.ForeignKey(CallLog)
+
+    @property
+    def call_log(self):
+        return self._call_log
+
+    @call_log.setter
+    def call_log(self, value):
+        self._call_log = value
 
     call_datetime = models.DateTimeField()
 
