@@ -1,18 +1,17 @@
 from django import forms
 
-from edc_base.form.forms import BaseModelForm
-from ..constants import ALIVE, DEAD, NO, YES, UNKNOWN
- 
+from edc_constants.constants import ALIVE, DEAD, NO, YES, UNKNOWN
+
 from ..models import CallLog, CallLogEntry
 
 
-class CallLogForm (BaseModelForm):
+class CallLogForm (forms.ModelForm):
 
     class Meta:
         model = CallLog
 
 
-class CallLogEntryForm (BaseModelForm):
+class CallLogEntryForm (forms.ModelForm):
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -48,13 +47,13 @@ class CallLogEntryForm (BaseModelForm):
 
         if cleaned_data.get('survival_status') == DEAD:
             for item, value in cleaned_data.iteritems():
-                if value and item not in ['id', 'survival_status', 'call_log', 'call_datetime', 'contact_type', 
+                if value and item not in ['id', 'survival_status', 'call_log', 'call_datetime', 'contact_type',
                                           'invalid_numbers', 'call_again']:
                     raise forms.ValidationError(
                         '{} should be left blank. Got \'{}\' when survival status=Dead'.format(item, value))
             if cleaned_data.get('call_again') != NO:
                 raise forms.ValidationError('Indicate NOT to call participant again. Got survival_status=\'Dead\'')
- 
+
         if cleaned_data.get('contact_type') == 'no_contact':
             for item, value in cleaned_data.iteritems():
                 if value and item not in ['id', 'call_log', 'call_datetime', 'contact_type', 'survival_status',
@@ -64,7 +63,7 @@ class CallLogEntryForm (BaseModelForm):
             if cleaned_data.get('call_again') != YES and cleaned_data.get('survival_status') != DEAD:
                 raise forms.ValidationError('Indicate to call participant again. Got contact_type=\'No contact made\'')
             if cleaned_data.get('survival_status') != UNKNOWN:
-                raise forms.ValidationError('Expected survival status to be unknown.' 
+                raise forms.ValidationError('Expected survival status to be unknown.'
                                             'Got contact_type=\'No contact made\'')
 
         return self.cleaned_data

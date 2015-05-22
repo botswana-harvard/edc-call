@@ -1,15 +1,15 @@
-from edc_base.form.forms import BaseModelForm
+from django import forms
 
 from ..models import WorkList, FollowUpList
 
 
-class WorkListForm (BaseModelForm):
+class WorkListForm (forms.ModelForm):
 
     class Meta:
         model = WorkList
 
 
-class FollowUpListForm (BaseModelForm):
+class FollowUpListForm (forms.ModelForm):
 
     class Meta:
         model = FollowUpList
