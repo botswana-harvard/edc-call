@@ -5,4 +5,13 @@
 
 # edc-contact
 
-work in-progress ...
+Intsallation
+------------
+
+    pip install edc-contact
+
+Usage
+-----
+
+Features
+--------
