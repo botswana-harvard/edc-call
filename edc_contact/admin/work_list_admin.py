@@ -1,20 +1,19 @@
 from django.contrib import admin
 
-from edc_base.modeladmin.admin import BaseModelAdmin
 
 # from ..actions import call_participant, update_call_list_action
 from ..forms import WorkListForm, FollowUpListForm
 from ..models import WorkList, FollowUpList
 
 
-class WorkListAdmin(BaseModelAdmin):
+class WorkListAdmin(admin.ModelAdmin):
 
     form = WorkListForm
     date_hierarchy = 'created'
 
     radio_fields = {
-        'gender':admin.VERTICAL
-        }
+        'gender': admin.VERTICAL
+    }
 
     list_display = (
         "subject_identifier",
@@ -27,7 +26,8 @@ class WorkListAdmin(BaseModelAdmin):
         "consent_datetime",
         'hostname_created',
         'user_created',
-        )
+    )
+
     list_filter = (
         'label',
         'created',
@@ -35,7 +35,7 @@ class WorkListAdmin(BaseModelAdmin):
         'consent_datetime',
         'hostname_created',
         'user_created',
-        )
+    )
 
     search_fields = ('subject_identifier',
                      'first_name',
@@ -47,13 +47,13 @@ class WorkListAdmin(BaseModelAdmin):
 admin.site.register(WorkList, WorkListAdmin)
 
 
-class FollowUpListAdmin(BaseModelAdmin):
+class FollowUpListAdmin(admin.ModelAdmin):
 
     form = FollowUpListForm
 
     radio_fields = {
-        'followup':admin.VERTICAL,
-        'status':admin.VERTICAL
-        }
+        'followup': admin.VERTICAL,
+        'status': admin.VERTICAL
+    }
 
 admin.site.register(FollowUpList, FollowUpListAdmin)

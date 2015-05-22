@@ -1,12 +1,10 @@
 from django.contrib import admin
 
-from edc_base.modeladmin.admin import BaseModelAdmin, BaseStackedInline
-
 from ..forms import CallLogForm, CallLogEntryForm
 from ..models import CallLog, CallLogEntry
 
 
-class CallLogEntryAdminInline(BaseStackedInline):
+class CallLogEntryAdminInline(admin.StackedInline):
     instructions = [
         'Please read out instrauctions to participant.']
 
@@ -26,10 +24,10 @@ class CallLogEntryAdminInline(BaseStackedInline):
         "appt_grading": admin.VERTICAL,
         "appt_location": admin.VERTICAL,
         "call_again": admin.VERTICAL,
-        }
+    }
 
 
-class CallLogAdmin(BaseModelAdmin):
+class CallLogAdmin(admin.ModelAdmin):
 
     instructions = [
         '<h5>Please read out instructions to participant:</h5>']
@@ -43,7 +41,7 @@ class CallLogAdmin(BaseModelAdmin):
 admin.site.register(CallLog, CallLogAdmin)
 
 
-class CallLogEntryAdmin(BaseModelAdmin):
+class CallLogEntryAdmin(admin.ModelAdmin):
 
     date_hierarchy = 'appt_date'
     instructions = [
@@ -62,7 +60,7 @@ class CallLogEntryAdmin(BaseModelAdmin):
         "appt_grading": admin.VERTICAL,
         "appt_location": admin.VERTICAL,
         "call_again": admin.VERTICAL,
-        }
+    }
 
     list_display = (
         'call_log',
@@ -83,9 +81,10 @@ class CallLogEntryAdmin(BaseModelAdmin):
         'hostname_modified',
     )
 
-    search_fields = ('subject_identifier',
-                     'first_name',
-                     'id'
+    search_fields = (
+        'subject_identifier',
+        'first_name',
+        'id'
     )
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
