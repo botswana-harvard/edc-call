@@ -8,7 +8,7 @@ try:
 except ImportError:
     SyncMixin = type('SyncMixin', (object, ), {})
 
-from ..manangers import CallLogManager
+from ..managers import CallLogManager
 
 
 class CallLog (SyncMixin, BaseUuidModel):

@@ -14,7 +14,7 @@ try:
 except:
     SycnMixin = type('SyncMixin', (object, ), {})
 
-from ..manangers import WorkListManager
+from ..managers import WorkListManager
 
 
 class WorkList(SyncMixin, BaseUuidModel):

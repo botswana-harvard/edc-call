@@ -12,7 +12,7 @@ except ImportError:
     SyncMixin = type('SyncMixin', (object, ), {})
 
 from ..choices import CONTACT_TYPE, APPT_GRADING, APPT_LOCATIONS
-from ..manangers import CallLogEntryManager
+from ..managers import CallLogEntryManager
 
 from .call_log import CallLog
 

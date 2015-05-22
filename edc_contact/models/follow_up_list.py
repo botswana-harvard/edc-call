@@ -10,7 +10,7 @@ except:
     SycnMixin = type('SyncMixin', (object, ), {})
 
 from ..choices import FOLLOW_UP
-from ..manangers import FollowUpListManager
+# from ..managers import FollowUpListManager
 
 from .work_list import WorkList
 
@@ -49,7 +49,7 @@ class FollowUpList(SyncMixin, BaseUuidModel):
 
 #     history = AuditTrail()
 
-    objects = FollowUpListManager()
+#    objects = FollowUpListManager()
 
     def call_list(self):
         url = reverse('admin:contact_worklist_changelist')
