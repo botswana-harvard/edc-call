@@ -152,5 +152,5 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
         return self.call_log.natural_key() + (self.call_datetime, )
 
     class Meta:
-        app_label = 'contact'
+        app_label = 'edc_contact'
         unique_together = ['call_log', 'call_datetime']

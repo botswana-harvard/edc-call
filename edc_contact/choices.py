@@ -1,5 +1,3 @@
-from django.utils.translation import ugettext as _
-
 FOLLOW_UP = (
     ('sms', 'SMS'),
     ('call', 'Call'),
