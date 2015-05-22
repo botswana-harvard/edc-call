@@ -13,5 +13,8 @@ Intsallation
 Usage
 -----
 
+
 Features
 --------
+- Produce a work list that contains all participants.
+- Maintain a call list of participants that need to be contacted. 
