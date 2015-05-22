@@ -1,10 +1,12 @@
 from dateutil.relativedelta import relativedelta
 
+from django.core.urlresolvers import reverse
 from django.db import models
 from django_crypto_fields.fields import FirstnameField
 
 from edc_base.model.models import BaseUuidModel
-from edc_base.model.validators import datetime_not_future, datetime_not_before_study_start
+from edc_base.model.validators import (datetime_not_future,
+                                       datetime_not_before_study_start)
 
 try:
     from edc_sync.mixins import SyncMixin
@@ -75,7 +77,7 @@ class WorkList(SyncMixin, BaseUuidModel):
 
     @first_name.setter
     def first_name(self, value):
-        self._first_name = value 
+        self._first_name = value
 
     def age(self):
         return relativedelta(self.consent_datetime.date(), self.dob).years
@@ -87,6 +89,12 @@ class WorkList(SyncMixin, BaseUuidModel):
 
     def natural_key(self):
         return self.subject_identifier
+
+    def follow_up_list(self):
+        url = reverse('admin:contact_followuplist_changelist')
+        return """<a href="{url}?q={q}" />followup list</a>""".format(
+            url=url, q=self.work_list)
+    follow_up_list.allow_tags = True
 
     class Meta:
         app_label = 'contact'

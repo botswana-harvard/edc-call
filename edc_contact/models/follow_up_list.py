@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.urlresolvers import reverse
 
 from edc_base.model.models import BaseUuidModel
 
@@ -58,13 +57,7 @@ class FollowUpList(SyncMixin, BaseUuidModel):
 
     @work_list.setter
     def work_list(self, value):
-        self._work_list=value
-
-    def call_list(self):
-        url = reverse('admin:contact_worklist_changelist')
-        return """<a href="{url}?q={q}" />worklist list</a>""".format(
-            url=url, q=self.work_list.pk)
-    call_list.allow_tags = True
+        self._work_list = value
 
     def natural_key(self):
         return self.subject_identifier

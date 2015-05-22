@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext as _
 
-from edc_contact import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
+from .constants import NOT_APPLICABLE, YES, NO, ALIVE, DEAD, UNKNOWN
 
 # choices
 BLANK_CHOICE_DASH = [('', '---------')]
@@ -87,7 +87,8 @@ GENDER_UNDETERMINED = (
     ('U', _('Undetermined')),
 )
 
-"""do not change without inspecting implication to check_omang_field() in utils.py"""
+"""do not change without inspecting implication
+   to check_omang_field() in utils.py"""
 IDENTITY_TYPE = (
     ('OMANG', 'Omang'),
     ('DRIVERS', 'Driver\'s License'),
@@ -95,7 +96,6 @@ IDENTITY_TYPE = (
     ('OMANG_RCPT', 'Omang Receipt'),
     ('OTHER', 'Other'),
 )
-
 
 NORMAL_ABNORMAL = (
     ('NORMAL', 'Normal'),
@@ -295,27 +295,6 @@ REFERRAL_APPT_COMMENTS = (
     ("undecided_accepting_status", "need time to accept my HIV status"),
     ("have_other_anc_appt", "have already registered with ANC and have another appointment"),
     ("personal_reasons", "personal reasons"),
-)
-
-REFERRAL_CODES = (
-    ('pending', '<data collection in progress>'),
-    ('TST-CD4', 'POS any, need CD4 testing'),
-    ('TST-HIV', 'HIV test'),
-    ('MASA-CC', 'Known POS, MASA continued care'),
-    ('MASA-DF', 'Known POS, MASA defaulter (was on ART)'),
-    ('SMC-NEG', 'SMC (uncircumcised, hiv neg)'),
-    ('SMC?NEG', 'SMC (Unknown circumcision status, hiv neg'),
-    ('SMC-UNK', 'SMC (uncircumcised, hiv result not known)'),
-    ('SMC?UNK', 'SMC (Unknown circumcision status, hiv result not known)'),
-    ('NEG!-PR', 'NEG today, Pregnant'),
-    ('POS!-PR', 'POS today, Pregnant'),
-    ('UNK?-PR', 'HIV UNKNOWN, Pregnant'),
-    ('POS#-AN', 'Known POS, Pregnant, on ART (ANC)'),
-    ('POS#-PR', 'Known POS, Pregnant, not on ART'),
-    ('POS!-HI', 'POS today, not on ART, high CD4)'),
-    ('POS!-LO', 'POS today, not on ART, low CD4)'),
-    ('POS#-HI', 'Known POS, not on ART, high CD4)'),
-    ('POS#-LO', 'Known POS, not on ART, low CD4)'),
 )
 
 VISIT_INFO_SOURCE = [

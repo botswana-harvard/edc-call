@@ -1,5 +1,4 @@
 from django.core.validators import RegexValidator
-from django.db import models
 
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import date_is_future
@@ -11,7 +10,9 @@ except ImportError:
 
 
 from ..constants import YES, NO, DEAD
-from ..choices import *
+from ..choices import (CONTACT_TYPE, ALIVE_DEAD_UNKNOWN,
+                       YES_NO_UNKNOWN, APPT_GRADING, APPT_LOCATIONS,
+                       TIME_OF_WEEK, TIME_OF_DAY, YES_NO)
 from ..manangers import *
 
 from .call_log import CallLog
@@ -162,3 +163,4 @@ class CallLogEntry (SyncMixin, BaseUuidModel):
     class Meta:
         app_label = 'contact'
         unique_together = ['call_log', 'call_datetime']
+    
