@@ -5,4 +5,16 @@
 
 # edc-contact
 
-work in-progress ...
+Intsallation
+------------
+
+    pip install edc-contact
+
+Usage
+-----
+
+
+Features
+--------
+- Produce a work list that to manage participants.
+- Maintain a followup list to manage the contacting of participants.
