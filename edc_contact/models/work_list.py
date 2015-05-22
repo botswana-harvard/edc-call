@@ -81,4 +81,4 @@ class WorkList(SyncMixin, BaseUuidModel):
     follow_up_list.allow_tags = True
 
     class Meta:
-        app_label = 'contact'
+        app_label = 'edc_contact'

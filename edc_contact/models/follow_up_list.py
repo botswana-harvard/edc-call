@@ -61,4 +61,4 @@ class FollowUpList(SyncMixin, BaseUuidModel):
         return self.subject_identifier
 
     class Meta:
-        app_label = 'contact'
+        app_label = 'edc_contact'
