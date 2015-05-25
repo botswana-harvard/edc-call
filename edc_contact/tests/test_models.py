@@ -7,6 +7,7 @@ from ..models import CallLog, CallLogEntry, WorkList, FollowUpList
 
 class CallLogModelTest(TestCase):
     def setUp(self):
+
         self.log = CallLog.objects.create(
             subject_identifier='987-098-9',
             locator_information='BHP, DMC',
