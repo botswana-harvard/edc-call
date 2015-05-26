@@ -1,5 +1,4 @@
-from datetime import datetime
-
+from django.utils import timezone
 from django.test import TestCase
 
 from ..models import CallLog, CallLogEntry, WorkList, FollowUpList
@@ -18,19 +17,19 @@ class CallLogModelTest(TestCase):
             call_log=self.log,
             contact_type='Direct edc_contact with participant',
             survival_status='Alive',
-            call_datetime=datetime.today()
+            call_datetime=timezone.now()
         )
         self.work_list = WorkList.objects.create(
             subject_identifier='987-098-9',
             first_name='Bella',
             initials='BB',
             gender='F',
-            consent_datetime=datetime.today(),
+            consent_datetime=timezone.now(),
         )
         FollowUpList.objects.create(
             work_list=self.work_list,
             followup='SMS',
-            contact_datetime=datetime.today(),
+            contact_datetime=timezone.now(),
             attempts=2,
         )
 
