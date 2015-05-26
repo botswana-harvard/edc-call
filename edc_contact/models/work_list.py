@@ -8,7 +8,6 @@ from edc_constants.choices import GENDER_UNDETERMINED
 from edc_base.model.models import BaseUuidModel
 from edc_base.model.validators import (datetime_not_future,
                                        datetime_not_before_study_start)
-
 try:
     from edc_sync.mixins import SyncMixin
 except:
