@@ -11,7 +11,7 @@ from edc_base.model.validators import (datetime_not_future,
 try:
     from edc_sync.mixins import SyncMixin
 except ImportError:
-    SycnMixin = type('SyncMixin', (object, ), {})
+    SyncMixin = type('SyncMixin', (object, ), {})
 
 from ..managers import WorkListManager
 

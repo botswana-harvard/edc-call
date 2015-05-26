@@ -7,7 +7,7 @@ from edc_constants.constants import CLOSED, OPEN, NEW
 try:
     from edc_sync.mixins import SyncMixin
 except ImportError:
-    SycnMixin = type('SyncMixin', (object, ), {})
+    SyncMixin = type('SyncMixin', (object, ), {})
 
 from ..choices import FOLLOW_UP
 # from ..managers import FollowUpListManager
