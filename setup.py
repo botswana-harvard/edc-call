@@ -24,7 +24,7 @@ setup(
     keywords='django contact clinical research',
     install_requires=[
         'unipath>=1.1',
-	'python-dateutil>=2.4',
+        'python-dateutil>=2.4',
         'edc-base>=0.1',
     ],
     classifiers=[

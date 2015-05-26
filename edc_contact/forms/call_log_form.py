@@ -10,6 +10,21 @@ class CallLogEntryForm(ModelForm):
     def clean(self):
         cleaned_data = self.cleaned_data
 
+        self.validate_not_alive(cleaned_data)
+        self.validate_scheduled_appt(cleaned_data)
+
+        if cleaned_data.get('contact_type') != 'direct' and cleaned_data.get('appt_date'):
+            raise ValidationError(
+                'You may may only schedule an appointment if contact is '
+                'with the participant. Got contact_type=\'{}\''.format(
+                    cleaned_data.get('contact_type')))
+
+        self.validate_deceased(cleaned_data)
+        self.validate_no_contact(cleaned_data)
+
+        return self.cleaned_data
+
+    def validate_not_alive(self, cleaned_data):
         if cleaned_data.get('survival_status') == DEAD and cleaned_data.get('appt_date'):
             raise ValidationError(
                 'You may not schedule an appointment for a participant who is deceased. '
@@ -26,6 +41,7 @@ class CallLogEntryForm(ModelForm):
                 'survival status suggests otherwise. Got survival_status={}'.format(
                     cleaned_data.get('survival_status')))
 
+    def validate_scheduled_appt(self, cleaned_data):
         if cleaned_data.get('appt') == NO and cleaned_data.get('appt_date'):
             raise ValidationError(
                 'You may not schedule an appointment for a participant who is not willing '
@@ -40,12 +56,7 @@ class CallLogEntryForm(ModelForm):
             raise ValidationError(
                 'You may not schedule an appointment for a participant who is not available ')
 
-        if cleaned_data.get('contact_type') != 'direct' and cleaned_data.get('appt_date'):
-            raise ValidationError(
-                'You may may only schedule an appointment if contact is '
-                'with the participant. Got contact_type=\'{}\''.format(
-                    cleaned_data.get('contact_type')))
-
+    def validate_deceased(self, cleaned_data):
         if cleaned_data.get('survival_status') == DEAD:
             for item, value in cleaned_data.iteritems():
                 if value and item not in [
@@ -57,6 +68,7 @@ class CallLogEntryForm(ModelForm):
                 raise ValidationError(
                     'Indicate NOT to call participant again. Got survival_status=\'Dead\'')
 
+    def validate_no_contact(self, cleaned_data):
         if cleaned_data.get('contact_type') == 'no_contact':
             for item, value in cleaned_data.iteritems():
                 if value and item not in [
@@ -71,8 +83,6 @@ class CallLogEntryForm(ModelForm):
                 raise ValidationError(
                     'Expected survival status to be unknown.'
                     'Got contact_type=\'No contact made\'')
-
-        return self.cleaned_data
 
     class Meta:
         model = CallLogEntry
